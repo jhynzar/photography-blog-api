@@ -1,0 +1,26 @@
+{
+  "name": "photography-blog-api",
+  "version": "1.0.0",
+  "description": "Backend API for photography-blog",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhynzar/photography-blog-api.git"
+  },
+  "author": "Mj Tapiru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhynzar/photography-blog-api/issues"
+  },
+  "homepage": "https://github.com/jhynzar/photography-blog-api#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
