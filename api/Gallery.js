@@ -5,23 +5,23 @@ const galleryPath = '/images/';
 const gallery = [
     {
         img: 'img1.jpg',
-        title: 'The Title',
-        description: 'lorem ipsum dalar set'
+        title: 'Berserk of Gluttony',
+        description: 'Manga'
     },
     {
         img: 'img2.jpg',
-        title: 'The Title',
-        description: 'lorem ipsum dalar set'
+        title: 'Riven',
+        description: 'The Broken Sword'
     },
     {
         img: 'img3.jpg',
-        title: 'The Title',
-        description: 'lorem ipsum dalar set'
+        title: 'Zed',
+        description: 'The Darkened Shadow'
     },
     {
         img: 'img4.jpg',
-        title: 'The Title',
-        description: 'lorem ipsum dalar set'
+        title: 'Random Cutie',
+        description: 'UwU'
     },
 ];
 
