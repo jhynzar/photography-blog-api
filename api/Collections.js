@@ -103,9 +103,25 @@ collectionsData.forEach(
         /**
          * collectionsGallery
          */
-        collectionsGallery[link] = Object.assign(
+
+        let gallery = Object.assign(
             getGallery(value.folderName),
-            value.gallery
+            value.gallery,
+        )
+
+
+        //add imgPath
+        for (const key in gallery) {
+            if (gallery.hasOwnProperty(key)) {
+                gallery[key]['imgPath'] = `${collectionsPath}/${value.folderName}/${key}`;
+            }
+        }
+
+        collectionsGallery[link] = Object.assign(
+            collection,
+            {
+                gallery,
+            }
         );
     }
 );
