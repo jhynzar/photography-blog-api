@@ -1,44 +1,117 @@
+const fs = require('fs');
+
 const collectionsPath = '/images/collections';
 
-const collections = [
+/**
+ * Defaults
+ */
+/**
+ * {
+ *      title: required,
+ *      coverImg: required,
+ *      folderName: required,
+ *      link: optional || '/{{kebabCase(this.title)}}',
+ *      gallery: optional || {
+ *          'img1.jpg': {
+ *              title: optional || '{{this.key}}',
+ *              description: optional || ' '
+ *          }
+ *      }
+ *  
+ * }
+ */
+
+const collectionsData = [
     {
         title: 'The First Collection',
         coverImg: 'img1.jpg',
         folderName: 'first-collection',
-        link: '/single'
+        link: 'deeemn-first',
+        gallery: {
+            'img1.jpg': {
+                title: 'The First One.',
+                description: 'This is the first picture of the first collection.'
+            }
+        }
     },
     {
-        title: 'Is this the 2nd collection?',
+        title: 'The 2nd',
         coverImg: 'img2.jpg',
         folderName: 'second-collection',
-        link: '/single'
     },
     {
         title: 'oops 3rd',
         coverImg: 'img3.jpg',
         folderName: 'third-collection',
-        link: '/single'
     },
     {
         title: 'hahaha last.',
         coverImg: 'img4.jpg',
         folderName: 'fourth-collection',
-        link: '/single'
     },
     {
         title: 'Same Cover',
         coverImg: 'img4.jpg',
         folderName: 'fourth-collection',
-        link: '/single'
     },
     {
         title: 'ALT IMAGE',
         coverImg: 'img5.jpg',
         folderName: 'fourth-collection',
-        link: '/single'
     },
 ];
 
-module.exports = collections.map(
-    value => Object.assign({}, value, {imgPath: `${collectionsPath}/${value.folderName}/${value.coverImg}`})
+/**
+ * Setting defaults
+ */
+let getGallery = (folderName) => {
+    let files = fs.readdirSync(`public${collectionsPath}/${folderName}`);
+    let gallery = {};
+    //console.log(files);
+
+    files.forEach((value) => {
+        gallery[value] = {
+            title: value,
+            description: ''
+        };
+    });
+
+    return gallery;
+};
+
+let collections = [];
+let collectionsGallery = {};
+
+collectionsData.forEach(
+    value => {
+        let link = value.link || `${value.title.toLowerCase().replace(/ /g,'-')}`;
+        /**
+         * Collections
+         */
+        let collection = Object.assign(
+            {},
+            value, 
+            {
+                link,
+                coverImgPath: `${collectionsPath}/${value.folderName}/${value.coverImg}`,
+            }
+        );
+
+        delete collection.gallery; //delete gallery info first, to reduce data size
+        collections.push(collection);
+
+        /**
+         * collectionsGallery
+         */
+        collectionsGallery[link] = Object.assign(
+            getGallery(value.folderName),
+            value.gallery
+        );
+    }
 );
+
+
+module.exports = {
+    list: collections,
+    galleries: collectionsGallery
+}

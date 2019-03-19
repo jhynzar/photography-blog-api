@@ -3,7 +3,7 @@ const path = require('path');
 
 const app = express();
 
-const collections = require('./api/Collections');
+const Collections = require('./api/Collections');
 
 const PORT = process.env.PORT || 5000;
 
@@ -24,7 +24,15 @@ app.use((req, res, next) => {
  * API
  */
 app.get('/api/collections', (req, res) => {
-    res.json(collections);
+    res.json(Collections.list);
+});
+
+app.get('/api/collections/:collection', (req, res) => {
+    if(Collections.galleries.hasOwnProperty(req.params.collection) === false) {
+        res.json(404, { error: 'No such collection' });
+    }
+
+    res.json(Collections.galleries[req.params.collection]);
 });
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
