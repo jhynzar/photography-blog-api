@@ -36,27 +36,17 @@ const collectionsData = [
     },
     {
         title: 'The 2nd',
-        coverImg: 'img2.jpg',
+        coverImg: 'img3.jpg',
         folderName: 'second-collection',
     },
     {
         title: 'oops 3rd',
-        coverImg: 'img3.jpg',
+        coverImg: 'img4.jpg',
         folderName: 'third-collection',
     },
     {
         title: 'hahaha last.',
-        coverImg: 'img4.jpg',
-        folderName: 'fourth-collection',
-    },
-    {
-        title: 'Same Cover',
-        coverImg: 'img4.jpg',
-        folderName: 'fourth-collection',
-    },
-    {
-        title: 'ALT IMAGE',
-        coverImg: 'img5.jpg',
+        coverImg: 'img2.jpg',
         folderName: 'fourth-collection',
     },
 ];
